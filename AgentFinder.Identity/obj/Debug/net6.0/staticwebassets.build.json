@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "vZ7vmoyZDXOiLtdeDCl2GHYAxuXhDxoKV4Q337auNjM=",
+  "Source": "AgentFinder.Identity",
+  "BasePath": "_content/AgentFinder.Identity",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
