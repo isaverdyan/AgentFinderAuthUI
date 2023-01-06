@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SELECT_VALUE_ACCESSOR } from '@angular/forms/src/directives/select_control_value_accessor';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateform';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -15,7 +17,12 @@ export class LoginComponent implements OnInit {
   isText: boolean = false;
   eyeIcon: string = "fa-eye-slash";
   loginForm!: FormGroup;
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(
+    private fb: FormBuilder, 
+    private auth: AuthService, 
+    private router: Router,
+    private toast: NgToastService
+    ) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -36,10 +43,16 @@ export class LoginComponent implements OnInit {
       //console.log(this.loginForm.value);
       this.auth.login(this.loginForm.value).subscribe({
         next: (res=>{
-          alert(res.message);
+          console.log(res.message);
           this.loginForm.reset();
+          alert(res.message);
+          this.toast.success({detail:"SUCCESS",summary:res.message,duration: 5000});
           this.router.navigate(['dashboard']);
-        })
+        }),
+        error: (err) => {
+          this.toast.error({detail:"ERROR",summary:"Something went wrong!",duration: 5000});
+          console.log(err);
+        }
       });
 
       console.log(this.loginForm.value);

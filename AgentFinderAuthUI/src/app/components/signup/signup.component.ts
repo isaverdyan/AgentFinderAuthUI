@@ -41,10 +41,11 @@ export class SignupComponent implements OnInit {
           alert(res.message);
           this.signUpForm.reset();
           this.router.navigate(['login']);
+        }),
+        error:(err=>{
+          alert(err.error.message)
         })
       });
-
-      console.log(this.signUpForm.value);
     }
     else {
         ValidateForm.validateAllFormFields(this.signUpForm);
