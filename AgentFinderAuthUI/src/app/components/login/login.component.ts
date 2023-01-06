@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SELECT_VALUE_ACCESSOR } from '@angular/forms/src/directives/select_control_value_accessor';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateform';
@@ -16,9 +15,9 @@ export class LoginComponent implements OnInit {
   type: string = "password";
   isText: boolean = false;
   eyeIcon: string = "fa-eye-slash";
-  loginForm!: FormGroup;
+  loginForm!: UntypedFormGroup;
   constructor(
-    private fb: FormBuilder, 
+    private fb: UntypedFormBuilder, 
     private auth: AuthService, 
     private router: Router,
     private toast: NgToastService
