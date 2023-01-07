@@ -3,7 +3,7 @@ import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@
 import { Router } from '@angular/router';
 import ValidateForm from 'src/app/helpers/validateform';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +15,11 @@ export class SignupComponent implements OnInit {
   isText: boolean = false;
   eyeIcon: string = "fa-eye-slash";
   signUpForm!: UntypedFormGroup;
-  constructor(private fb: UntypedFormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(
+    private fb: UntypedFormBuilder, 
+    private auth: AuthService, 
+    private router: Router, 
+    private toast: NgToastService) { }
 
   hideShowPass(){
     this.isText = !this.isText;
@@ -40,10 +44,11 @@ export class SignupComponent implements OnInit {
         next: (res=>{
           alert(res.message);
           this.signUpForm.reset();
+         
           this.router.navigate(['login']);
         }),
         error:(err=>{
-          alert(err.error.message)
+          this.toast.error({detail:"ERROR",summary:"Something went wrong!",duration: 5000});
         })
       });
     }
