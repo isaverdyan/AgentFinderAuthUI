@@ -4,8 +4,8 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateform';
-import { AuthService } from 'src/app/services/auth.service';
-import { UserStoreService } from 'src/app/services/user-store.service';
+import { AuthService } from '../../services/auth.service';
+import { UserStoreService } from '../../services/user-store.service';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    debugger;
+   
     if(this.loginForm.valid){     
      
       this.auth.signIn(this.loginForm.value).subscribe({

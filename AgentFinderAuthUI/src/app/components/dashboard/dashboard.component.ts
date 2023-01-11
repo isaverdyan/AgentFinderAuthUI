@@ -33,8 +33,6 @@ export class DashboardComponent implements OnInit {
         });
   }
 
-  logout() {
-    this.auth.signOut();
-  }
+  
 
 }

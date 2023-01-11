@@ -1,0 +1,6 @@
+{
+    "originUrl": "http://localhost:4200",
+    "loginPage": "login",
+    "logoutPage": "logout",
+    "homePage": "home"
+}
