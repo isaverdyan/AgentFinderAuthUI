@@ -4,7 +4,6 @@ D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentF
 D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentFinder.Identity\bin\Debug\net6.0\AgentFinder.Identity.deps.json
 D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentFinder.Identity\bin\Debug\net6.0\AgentFinder.Identity.runtimeconfig.json
 D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentFinder.Identity\bin\Debug\net6.0\AgentFinder.Identity.dll
-D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentFinder.Identity\bin\Debug\net6.0\ref\AgentFinder.Identity.dll
 D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentFinder.Identity\bin\Debug\net6.0\AgentFinder.Identity.pdb
 D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentFinder.Identity\bin\Debug\net6.0\Humanizer.dll
 D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentFinder.Identity\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -61,3 +60,4 @@ D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentF
 D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentFinder.Identity\obj\Debug\net6.0\ref\AgentFinder.Identity.dll
 D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentFinder.Identity\obj\Debug\net6.0\AgentFinder.Identity.pdb
 D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentFinder.Identity\obj\Debug\net6.0\AgentFinder.Identity.genruntimeconfig.cache
+D:\Programming\MyWork\RealEstate\Project\agentfinder.ui\AgentFinderAuthUI\AgentFinder.Identity\bin\Debug\net6.0\ref\AgentFinder.Identity.dll
