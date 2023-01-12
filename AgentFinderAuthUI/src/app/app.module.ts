@@ -8,6 +8,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
+import { MenuOptionsService } from 'src/app/services/menu-options.service';
 import { NgToastModule } from 'ng-angular-popup';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
@@ -16,6 +17,7 @@ import { FooterOnlyLayoutComponent } from './shared/layouts/footer-only-layout/f
 import { AgentsLayoutComponent } from './shared/layouts/agents-layout/agents-layout.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { DashboardModule } from './components/dashboard/dashboard.module';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }],
+  },
+  MenuOptionsService
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

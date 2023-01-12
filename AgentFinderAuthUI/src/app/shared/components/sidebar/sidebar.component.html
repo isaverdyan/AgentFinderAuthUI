@@ -2,52 +2,14 @@
   <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <a
-          href="#"
-          class="list-group-item list-group-item-action py-2 ripple"
-          aria-current="true"
-        >
-          <i class="fa fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
+        <ng-container *ngIf="role === 'Admin'">
+          <a *ngFor="let item of menus" href="{{item.menuUrl}}" class="list-group-item list-group-item-action py-2 ripple"
+          aria-current="true">
+          <i class="{{item.icon}} me-3"></i><span>{{item.menuText}}</span>
         </a>       
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fa fa-lock fa-fw me-3"></i><span>Change Password</span></a
-        >
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fa fa-chart-line fa-fw me-3"></i><span>Analytics</span></a
-        >       
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fa fa-chart-bar fa-fw me-3"></i><span>Orders</span></a
-        >       
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fa fa-building fa-fw me-3"></i><span>Partners</span></a
-        >      
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fa fa-money-bill fa-fw me-3"></i><span>Sales</span></a
-        >
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fa fa-mail fa-fw me-3"></i><span>Live contacts</span></a
-        >
+        </ng-container>
+        
       </div>
     </div>
   </nav>
   <!-- Sidebar -->
-
-
-<!-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-    <div class="position-sticky pt-3 sidebar-sticky">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="">Orders</a>
-        </li>
-        <li class="nav-item">
-          <a class="">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="">Customers</a>
-        </li>
-      </ul>
-    </div>
-  </nav> -->
