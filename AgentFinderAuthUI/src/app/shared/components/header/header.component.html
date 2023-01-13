@@ -1,12 +1,29 @@
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Hello <h3>{{fullName}}</h3></a>
-    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapsed">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" >
-    <div class="navbar-nav">
-      <div class="nav-item text-nowrap">
-        <a class="nav-link px-3 cursor-pointer" (click)="logout()">Sign out</a>
+<!-- Navbar-->
+<header class="header">
+  <nav class="navbar navbar-expand-lg bg-white text-darkgray fixed-top border-bottom py-0">
+    <a href="#" class="navbar-brand text-uppercase font-weight-bold text-darkgray  px-5 pb-5">Logo here</a>
+      <div class="container">
+          <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+          
+          <div id="navbarSupportedContent" class="collapse navbar-collapse">
+              <ul class="navbar-nav text-center">
+                  <li class="nav-item active"><a href="/" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
+                  <li class="nav-item"><a routerLink="/agents" class="nav-link text-uppercase font-weight-bold">Agents List</a></li>                  
+                  <li class="nav-item"><a href="/contact-inbox" class="nav-link text-uppercase font-weight-bold">Contact inbox</a></li>
+                 
+              </ul>
+          </div>          
       </div>
+      <div class="float-right ml-auto">
+        <span class="p-5">
+          <a *ngIf="fullName != null" href="javascript:void(0)" class="nav-link px-3 cursor-pointer" (click)="logout()">
+            {{fullName}} Log out
+          </a>
+          <a *ngIf="fullName == null" class="nav-link px-3 cursor-pointer" (click)="register()" ><span role="button">Register as user</span></a>
+        </span>
     </div>
-  </header>
+  </nav>
+</header>
+
+
+ 

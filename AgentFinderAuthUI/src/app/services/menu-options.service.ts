@@ -13,7 +13,7 @@ import { IMenuOptionsAPIDTO } from '../shared/dto/menu-options-dto';
   providedIn: 'root'
 })
 export class MenuOptionsService {
-  private baseUrl: string = 'https://localhost:7216/api/MenuOptions/list';
+  private baseUrl: string = 'https://localhost:7216/api/MenuOptions/';
   constructor(
     private readonly http: HttpClient
     ) { 
@@ -24,7 +24,7 @@ export class MenuOptionsService {
   }
   
   getAll() {
-    return this.http.get<any>(this.baseUrl);
+    return this.http.get<any>(`${this.baseUrl}list`);
   }
 
  

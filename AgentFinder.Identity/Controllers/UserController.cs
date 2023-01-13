@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using AgentFinder.Identity.Constants;
 using AgentFinder.Identity.Context;
 using AgentFinder.Identity.Helpers;
 using AgentFinder.Identity.Models;
@@ -77,7 +78,9 @@ namespace AgentFinder.Identity.Controllers
                 return BadRequest(new {Message = pass.ToString()});
 
             userObj.Password = PasswordHasher.HashPassword(userObj.Password);
-            userObj.Role = "User";
+            var typeId = string.IsNullOrEmpty(userObj.Role) ? (int)UserTypes.Customer : userObj.Role.ToLower().Equals("customer") ? (int)UserTypes.Customer : (int)UserTypes.Agent;
+            userObj.Role = userObj.Role.ToLower();
+            userObj.UserTypeId = typeId;
             userObj.Token = "";
             await _authContext.Users.AddAsync(userObj);
             await _authContext.SaveChangesAsync();

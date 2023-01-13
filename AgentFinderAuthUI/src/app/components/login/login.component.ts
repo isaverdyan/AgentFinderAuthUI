@@ -54,7 +54,12 @@ export class LoginComponent implements OnInit {
           this.userStore.setFullNameForStore(tokenPayload.name);
           this.userStore.setRoleForStore(tokenPayload.role);
           this.toast.success({detail:"SUCCESS",summary:res.message,duration: 5000});
-          this.router.navigate(['dashboard']);
+          if(tokenPayload.role === 'agent'){
+            this.router.navigate(['dashboard']);
+          }
+          else {
+            this.router.navigate(['']);
+          }
         },
         error: (err) => {
           this.toast.error({detail:"ERROR",summary:"Something went wrong!",duration: 5000});

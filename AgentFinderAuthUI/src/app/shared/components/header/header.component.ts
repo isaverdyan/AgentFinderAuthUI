@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
 
@@ -11,7 +12,10 @@ export class HeaderComponent implements OnInit {
   public fullName:  string = "";
   public role!:string;
 
-  constructor(private auth: AuthService, private userStore: UserStoreService) { }
+  constructor(
+      private auth: AuthService,
+      private router: Router,
+      private userStore: UserStoreService) { }
 
   ngOnInit(): void {
     this.userStore.getFullNameFromStore()
@@ -25,6 +29,10 @@ export class HeaderComponent implements OnInit {
            const roleFromToken = this.auth.getRoleFromToken(); 
            this.role = val || roleFromToken;
         });
+  }
+
+  register() {
+    this.router.navigate(['signup']);
   }
 
   logout() {

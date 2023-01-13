@@ -91,12 +91,48 @@ namespace AgentFinder.Identity.Migrations
                     b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<short?>("UserTypeId1")
+                        .HasColumnType("smallint");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("UserTypeId1");
+
                     b.ToTable("Users", (string)null);
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.UserType", b =>
+                {
+                    b.Property<short>("UserTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("smallint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<short>("UserTypeId"), 1L, 1);
+
+                    b.Property<string>("TypeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserTypeId");
+
+                    b.ToTable("UserType");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.User", b =>
+                {
+                    b.HasOne("AgentFinder.Identity.Models.UserType", "userType")
+                        .WithMany()
+                        .HasForeignKey("UserTypeId1");
+
+                    b.Navigation("userType");
                 });
 #pragma warning restore 612, 618
         }

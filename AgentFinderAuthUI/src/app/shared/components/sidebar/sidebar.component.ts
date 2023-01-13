@@ -12,22 +12,37 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SidebarComponent implements OnInit {
   public menus:any = [];
   public role!:string;
-  
+  selectedMenu!: string;
+
   constructor(private menuOptionsService: MenuOptionsService, private auth: AuthService,private userStore: UserStoreService) { }
 
   ngOnInit(): void {
-    //debugger;
+  console.log(' is sidebar');
+  var decodedToken = this.auth.getRoleFromToken(); 
+  console.log("agent profile - " + decodedToken);
+  console.log( JSON.stringify( decodedToken));
+
+
     this.menuOptionsService.getAll()
     .subscribe( res => {
       this.menus = res;
       console.log(JSON.stringify(res));
     });
 
+    //this.role = sessionStorage.getItem("userRole");
+ 
+
     this.userStore.getRoleFromStore()
         .subscribe(val=>{
            const roleFromToken = this.auth.getRoleFromToken(); 
            this.role = val || roleFromToken;
+           console.log(' role = ' + this.role + ' >>> '+roleFromToken );
         });
+  }
+
+  selectMenuItem(itemText) {
+    console.log(' ggggggggg '+itemText);
+    this.selectedMenu = itemText;
   }
 
 }

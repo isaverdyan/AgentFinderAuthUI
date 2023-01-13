@@ -2,8 +2,9 @@
   <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <ng-container *ngIf="role === 'Admin'">
-          <a *ngFor="let item of menus" href="{{item.menuUrl}}" class="list-group-item list-group-item-action py-2 ripple"
+        <ng-container *ngIf="role === 'agent'">
+          <a *ngFor="let item of menus" [class.active]="(selectedMenu === item.menuText)" (click)="selectMenuItem(item.menuText)" 
+          class="list-group-item list-group-item-action py-2 ripple cursor-pointer"
           aria-current="true">
           <i class="{{item.icon}} me-3"></i><span>{{item.menuText}}</span>
         </a>       

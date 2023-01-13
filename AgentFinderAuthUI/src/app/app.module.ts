@@ -17,7 +17,21 @@ import { FooterOnlyLayoutComponent } from './shared/layouts/footer-only-layout/f
 import { AgentsLayoutComponent } from './shared/layouts/agents-layout/agents-layout.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { DashboardModule } from './components/dashboard/dashboard.module';
-
+import { HomeComponent } from './components/home/home.component';
+import { HeaderFooterLayoutComponent } from './shared/layouts/header-footer-layout/header-footer-layout.component';
+import { DashboardHeaderComponent } from './shared/components/dashboard-header/dashboard-header.component';
+import { AgentRegisterComponent } from './components/agent-register/agent-register.component';
+import { AgentProfileComponent } from './components/agent-profile/agent-profile.component';
+import { AgentsComponent } from './components/agents/agents.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { ContactInboxComponent } from './components/contact-inbox/contact-inbox.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +41,15 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
     FooterComponent,
     FooterOnlyLayoutComponent,
     AgentsLayoutComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent,
+    HeaderFooterLayoutComponent,
+    DashboardHeaderComponent,
+    AgentRegisterComponent,
+    AgentProfileComponent,
+    AgentsComponent,
+    ContactInboxComponent,
+ 
   ],
   imports: [
     BrowserModule,
@@ -37,7 +59,15 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgToastModule
+    NgToastModule,
+    MatGridListModule,
+    MatDividerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
