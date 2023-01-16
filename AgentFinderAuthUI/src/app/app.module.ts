@@ -32,6 +32,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { ContactInboxComponent } from './components/contact-inbox/contact-inbox.component';
+import { OfferBoxComponent } from './components/offer-box/offer-box.component';
+import { TopMenuComponent } from './shared/layouts/top-menu/top-menu.component';
+import { CustomersComponent } from './components/customers/customers.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { ContactInboxComponent } from './components/contact-inbox/contact-inbox.
     AgentProfileComponent,
     AgentsComponent,
     ContactInboxComponent,
+    OfferBoxComponent,
+    TopMenuComponent,
+    CustomersComponent,
  
   ],
   imports: [

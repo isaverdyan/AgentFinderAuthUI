@@ -22,6 +22,55 @@ namespace AgentFinder.Identity.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("AgentFinder.Identity.Models.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CustomerGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerGroupId");
+
+                    b.ToTable("Customers", (string)null);
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.CustomerGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("GroupName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CustomerGroups", (string)null);
+                });
+
             modelBuilder.Entity("AgentFinder.Identity.Models.MenuOptions", b =>
                 {
                     b.Property<int>("Id")
@@ -124,6 +173,15 @@ namespace AgentFinder.Identity.Migrations
                     b.HasKey("UserTypeId");
 
                     b.ToTable("UserType");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.Customer", b =>
+                {
+                    b.HasOne("AgentFinder.Identity.Models.CustomerGroup", "CustomerGroup")
+                        .WithMany()
+                        .HasForeignKey("CustomerGroupId");
+
+                    b.Navigation("CustomerGroup");
                 });
 
             modelBuilder.Entity("AgentFinder.Identity.Models.User", b =>

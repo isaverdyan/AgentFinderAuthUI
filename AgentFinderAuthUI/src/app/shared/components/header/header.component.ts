@@ -31,9 +31,13 @@ export class HeaderComponent implements OnInit {
         });
   }
 
-  register() {
-    this.router.navigate(['signup']);
-  }
+  // register() {
+  //   this.router.navigate(['signup']);
+  // }
+
+  // login() {
+  //   this.router.navigate(['signin']);
+  // }
 
   logout() {
     this.auth.signOut();

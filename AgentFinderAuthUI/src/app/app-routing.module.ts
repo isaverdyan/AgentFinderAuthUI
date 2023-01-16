@@ -4,7 +4,9 @@ import { AgentProfileComponent } from './components/agent-profile/agent-profile.
 import { AgentRegisterComponent } from './components/agent-register/agent-register.component';
 import { AgentsComponent } from './components/agents/agents.component';
 import { ContactInboxComponent } from './components/contact-inbox/contact-inbox.component';
+import { OfferBoxComponent } from './components/offer-box/offer-box.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CustomersComponent } from './components/customers/customers.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -35,7 +37,21 @@ const routes: Routes = [
  {path: 'contact-inbox', component: HeaderFooterLayoutComponent,
       children: [
         {path:'', component: ContactInboxComponent}
-      ] }
+      ] },
+{path: 'offer-box', component: HeaderFooterLayoutComponent,
+children: [
+  {path:'', component: OfferBoxComponent}
+] },
+{path: 'agent-profile', component: HeaderFooterLayoutComponent,
+        children: [
+          {path:'', component: AgentProfileComponent}
+        ]
+ },
+ {path: 'customers', component: HeaderFooterLayoutComponent,
+        children: [
+          {path:'', component: CustomersComponent}
+        ]
+ }
   // {path: '', component: HomeComponent},
   // {path: '**', component: HomeComponent}
 ];
