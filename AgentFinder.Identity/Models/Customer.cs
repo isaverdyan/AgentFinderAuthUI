@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using AgentFinder.Identity.Entities;
 
 namespace AgentFinder.Identity.Models
@@ -8,9 +9,8 @@ namespace AgentFinder.Identity.Models
         [Key]
         public int Id { get; set; }
 
-        public int UserId { get; set; }
-
-        public CustomerGroup CustomerGroup { get; set; }
+        [ForeignKey("UserId")]
+        public User user { get; set; }
 
     }
 }
