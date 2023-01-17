@@ -10,7 +10,17 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Miscellaneous Files",
       "ColorIndex": -1
+    },
+    "92ac59b8-4c2b-4e94-bb58-2323884f6d20": {
+      "ProjectGuid": "92ac59b8-4c2b-4e94-bb58-2323884f6d20",
+      "DisplayName": "AgentFinder.NewsSender",
+      "ColorIndex": 1
+    },
+    "2bdaf572-a424-49a1-8539-499cb7ce0d24": {
+      "ProjectGuid": "2bdaf572-a424-49a1-8539-499cb7ce0d24",
+      "DisplayName": "AgentFinder.Domain",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }

@@ -22,6 +22,199 @@ namespace AgentFinder.Identity.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("AgentFinder.Identity.Models.AgentInterestsLocation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AgentsInterestsLocations");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShortCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Customers", (string)null);
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.CustomerGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("GroupName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CustomerGroups", (string)null);
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.CustomerGroupUsers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CustomerGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerGroupId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CustomerGroupUsers", (string)null);
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.Location", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("AgentInterestsLocationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Latitude")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Longitude")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AgentInterestsLocationId");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("Locations");
+                });
+
             modelBuilder.Entity("AgentFinder.Identity.Models.MenuOptions", b =>
                 {
                     b.Property<int>("Id")
@@ -57,6 +250,49 @@ namespace AgentFinder.Identity.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MenuOptions", (string)null);
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.OfferMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("AgentId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CustomerGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<short?>("UserTypeId")
+                        .HasColumnType("smallint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AgentId");
+
+                    b.HasIndex("CustomerGroupId");
+
+                    b.HasIndex("UserTypeId");
+
+                    b.ToTable("OfferMessages", (string)null);
                 });
 
             modelBuilder.Entity("AgentFinder.Identity.Models.User", b =>
@@ -123,7 +359,74 @@ namespace AgentFinder.Identity.Migrations
 
                     b.HasKey("UserTypeId");
 
-                    b.ToTable("UserType");
+                    b.ToTable("UserTypes");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.City", b =>
+                {
+                    b.HasOne("AgentFinder.Identity.Models.Country", "country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
+
+                    b.Navigation("country");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.Customer", b =>
+                {
+                    b.HasOne("AgentFinder.Identity.Models.User", "user")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("user");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.CustomerGroupUsers", b =>
+                {
+                    b.HasOne("AgentFinder.Identity.Models.CustomerGroup", "customerGroup")
+                        .WithMany()
+                        .HasForeignKey("CustomerGroupId");
+
+                    b.HasOne("AgentFinder.Identity.Models.User", "user")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("customerGroup");
+
+                    b.Navigation("user");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.Location", b =>
+                {
+                    b.HasOne("AgentFinder.Identity.Models.AgentInterestsLocation", null)
+                        .WithMany("Locations")
+                        .HasForeignKey("AgentInterestsLocationId");
+
+                    b.HasOne("AgentFinder.Identity.Models.City", "ciy")
+                        .WithMany()
+                        .HasForeignKey("CityId");
+
+                    b.Navigation("ciy");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.OfferMessage", b =>
+                {
+                    b.HasOne("AgentFinder.Identity.Models.User", "agent")
+                        .WithMany()
+                        .HasForeignKey("AgentId");
+
+                    b.HasOne("AgentFinder.Identity.Models.CustomerGroup", "customerGroup")
+                        .WithMany()
+                        .HasForeignKey("CustomerGroupId");
+
+                    b.HasOne("AgentFinder.Identity.Models.UserType", "userType")
+                        .WithMany()
+                        .HasForeignKey("UserTypeId");
+
+                    b.Navigation("agent");
+
+                    b.Navigation("customerGroup");
+
+                    b.Navigation("userType");
                 });
 
             modelBuilder.Entity("AgentFinder.Identity.Models.User", b =>
@@ -133,6 +436,11 @@ namespace AgentFinder.Identity.Migrations
                         .HasForeignKey("UserTypeId1");
 
                     b.Navigation("userType");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.AgentInterestsLocation", b =>
+                {
+                    b.Navigation("Locations");
                 });
 #pragma warning restore 612, 618
         }
