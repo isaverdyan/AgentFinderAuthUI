@@ -1,24 +1,83 @@
 <div class="container-fluid">
-    <div class="row">
-      
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="chartjs-size-monitor">
-          <div class="chartjs-size-monitor-expand">
-            <div class=""></div>
-          </div>
-        </div>
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap d-block align-items-center pt-3 pb-2 mt-3 mb-3">
-          <h1 class="h2 py-5">Customers</h1>
-          <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-              <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+  <section class="pt-5 mt-5 ml-5 mr-5 mb-5">
+      <div class="container">
+          <h1>Customers</h1>
+      </div>        
+    
+      <div class="text-right example-container">
+        <div class="container-fluid mt-10">
+            <div class="text-right ">
+                <mat-form-field class="form-group col-md-3 float-right" appearance="outline">                    
+                    <input matInput placeholder="Filter" (keyup)="Filterchange($event)"> 
+                </mat-form-field>
             </div>
-          </div>
         </div>
-        <div class="container-fluid">
-            
-        </div>
-      </main>
+      </div>
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+          <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()"
+                          [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+         <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+      </ng-container>
+        <ng-container matColumnDef="id">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>    
+          
+        <ng-container matColumnDef="firstname">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> firstName </th>
+        <td mat-cell *matCellDef="let element"> {{element.user.firstName}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="lastname">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> lastname </th>
+        <td mat-cell *matCellDef="let element"> {{element.user.lastName}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="username">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef> username </th>
+            <td mat-cell *matCellDef="let element"> {{element.user.userName}} </td>
+        </ng-container>    
+        
+        <ng-container matColumnDef="email">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.user.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element"> <!-- <button (click)="FunctionEdit(element.code)" mat-raised-button color="primary" >Edit</button> |  -->
+            <button mat-raised-button color="warn" (click)="FunctionDelete(element.id)">Delete</button>
+        </td>
+        </ng-container> 
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            (click)="selection.toggle(row)">
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[6,16,32]" showFirstLastButtons>        
+    </mat-paginator>        
+  </section>
+  <section class="pt-5 mt-5 ml-5 mr-5 mb-5">
+    <div class="col-md-3 text-left">
+      <button class="btn btn-primary">Send Message</button>
     </div>
-  </div>
+  </section>     
+ </div>

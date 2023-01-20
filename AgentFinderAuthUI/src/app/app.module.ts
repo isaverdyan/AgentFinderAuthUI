@@ -3,14 +3,26 @@ import { NgModule } from '@angular/core';
 import { LoginModule } from './components/login/login.module'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { SignupComponent } from './components/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgToastModule } from 'ng-angular-popup';
+
 import { AuthService } from './services/auth.service';
 import { MenuOptionsService } from 'src/app/services/menu-options.service';
-import { NgToastModule } from 'ng-angular-popup';
+import { CustomerService } from './services/customer.service';
+
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { SignupComponent } from './components/signup/signup.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { FooterOnlyLayoutComponent } from './shared/layouts/footer-only-layout/footer-only-layout.component';
@@ -23,18 +35,11 @@ import { DashboardHeaderComponent } from './shared/components/dashboard-header/d
 import { AgentRegisterComponent } from './components/agent-register/agent-register.component';
 import { AgentProfileComponent } from './components/agent-profile/agent-profile.component';
 import { AgentsComponent } from './components/agents/agents.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatDividerModule } from '@angular/material/divider';
-import {MatTableModule} from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
 import { ContactInboxComponent } from './components/contact-inbox/contact-inbox.component';
 import { OfferBoxComponent } from './components/offer-box/offer-box.component';
 import { TopMenuComponent } from './shared/layouts/top-menu/top-menu.component';
 import { CustomersComponent } from './components/customers/customers.component';
+
 
 @NgModule({
   declarations: [
@@ -73,14 +78,16 @@ import { CustomersComponent } from './components/customers/customers.component';
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
   },
-  MenuOptionsService
+  MenuOptionsService,
+  CustomerService
 ],
   bootstrap: [AppComponent]
 })
