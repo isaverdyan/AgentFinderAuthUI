@@ -1,0 +1,51 @@
+table {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-spacing: 0 8px !important;
+    border-collapse: collapse;
+    border-radius: 5em;
+    
+}
+
+table tr:last-child td /*To remove the last border*/
+{
+    border-bottom:0 solid
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.mat-row:hover .mat-cell{
+    background-color: #fff5a2;
+}
+ 
+.mat-row:nth-child(even){
+    background-color: #e4f0ec;
+}
+        
+.mat-row:nth-child(odd){
+    background-color: #ffffff;
+}
+
+input {
+    color: #ccc;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    
+}
+.form-group input {
+    height: 36px;
+    color: #333;
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-form-field {
+    float: right;
+}
