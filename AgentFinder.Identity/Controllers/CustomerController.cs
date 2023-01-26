@@ -1,4 +1,5 @@
-﻿using AgentFinder.Identity.Context;
+﻿using AgentFinder.Identity.Constants;
+using AgentFinder.Identity.Context;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,23 @@ namespace AgentFinder.Identity.Controllers
         {
             var customers = await _authContext.Customers
                 .Include(u => u.user).ToListAsync();
+
+            return Ok(customers);
+        }
+
+        [HttpGet("list/{id}")]
+        //[Authorize]
+        public async Task<ActionResult> GetByAgentAsync(string id)
+        {
+            var customers = await _authContext.AgentCustomers
+                //.Include(a => a.Agent)
+                .Include(c => c.Customer)
+                .ThenInclude(u => u.user)
+
+                .Where(u => u.Agent.User.UserName == id)
+                .ToListAsync();
+
+           // var q = customers.ToQueryString();
 
             return Ok(customers);
         }

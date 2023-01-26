@@ -1,4 +1,5 @@
 ﻿using AgentFinder.Identity.Models;
+using AgentFinder.Identity.Models.Provider;
 using Microsoft.EntityFrameworkCore;
 
 namespace AgentFinder.Identity.Context
@@ -9,7 +10,7 @@ namespace AgentFinder.Identity.Context
         {
 
         }
-
+        public DbSet<Agent> Agents { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -21,11 +22,21 @@ namespace AgentFinder.Identity.Context
         public DbSet<Country> Countries { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<AgentInterestsLocation> AgentsInterestsLocations { get; set; }
+        public DbSet<AgentCustomer> AgentCustomers { get; set; }
+        public DbSet<CustomerNotification> CustomerNotifications { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.UserId)
+                .IsUnique();
+
+            modelBuilder.Entity<Agent>().ToTable("Agents");
 
             modelBuilder.Entity<MenuOptions>().ToTable("MenuOptions");
 
@@ -36,6 +47,10 @@ namespace AgentFinder.Identity.Context
             modelBuilder.Entity<CustomerGroupUsers>().ToTable("CustomerGroupUsers");
 
             modelBuilder.Entity<OfferMessage>().ToTable("OfferMessages");
+
+            modelBuilder.Entity<AgentCustomer>().ToTable("AgentCustomers");
+
+            modelBuilder.Entity<CustomerNotification>().ToTable("CustomerNotifications");
         }
     }
 }

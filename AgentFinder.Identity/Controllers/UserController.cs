@@ -78,11 +78,21 @@ namespace AgentFinder.Identity.Controllers
                 return BadRequest(new {Message = pass.ToString()});
 
             userObj.Password = PasswordHasher.HashPassword(userObj.Password);
-            var typeId = string.IsNullOrEmpty(userObj.Role) ? (int)UserTypes.Customer : userObj.Role.ToLower().Equals("customer") ? (int)UserTypes.Customer : (int)UserTypes.Agent;
+            var typeId = string.IsNullOrEmpty(userObj.Role) ? (short)UserTypes.Customer : userObj.Role.ToLower().Equals("customer") ? (short)UserTypes.Customer : (short)UserTypes.Agent;
             userObj.Role = userObj.Role.ToLower();
-            userObj.UserTypeId = typeId;
+            var userType = await _authContext.UserTypes.FirstOrDefaultAsync(i => i.UserTypeId == (ushort)UserTypes.Agent);
+            userObj.userType = userType;
             userObj.Token = "";
             await _authContext.Users.AddAsync(userObj);
+
+            var customer = new Customer();
+            customer.user = userObj;
+            customer.CreatedBy = Guid.Parse("befd19c3-b8af-4253-a4e1-beb298aba1e4");
+            customer.CreatedDate = DateTime.Now;
+            customer.UpdatedDate = DateTime.Now;
+            customer.UpdatedBy = Guid.Parse("befd19c3-b8af-4253-a4e1-beb298aba1e4");
+            await _authContext.Customers.AddAsync(customer);
+
             await _authContext.SaveChangesAsync();
 
             return Ok(new

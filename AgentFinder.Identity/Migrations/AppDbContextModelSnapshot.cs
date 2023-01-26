@@ -22,6 +22,77 @@ namespace AgentFinder.Identity.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("AgentFinder.Identity.Models.Agent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CompanyAddress")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("CompanyName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CompanyPhone")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<string>("CompanyPhone2")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<short?>("CompanyRating")
+                        .HasColumnType("smallint");
+
+                    b.Property<int?>("LocationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("YearsInBusiness")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Agents", (string)null);
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.AgentCustomer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("AgentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SubscriptionDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AgentId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("AgentCustomers", (string)null);
+                });
+
             modelBuilder.Entity("AgentFinder.Identity.Models.AgentInterestsLocation", b =>
                 {
                     b.Property<int>("Id")
@@ -62,7 +133,8 @@ namespace AgentFinder.Identity.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -86,10 +158,12 @@ namespace AgentFinder.Identity.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("ShortCode")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
@@ -115,6 +189,15 @@ namespace AgentFinder.Identity.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastContactDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LongDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShortDescription")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
@@ -171,6 +254,35 @@ namespace AgentFinder.Identity.Migrations
                     b.ToTable("CustomerGroupUsers", (string)null);
                 });
 
+            modelBuilder.Entity("AgentFinder.Identity.Models.CustomerNotification", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<int?>("AgentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Notification")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AgentId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("CustomerNotifications", (string)null);
+                });
+
             modelBuilder.Entity("AgentFinder.Identity.Models.Location", b =>
                 {
                     b.Property<int>("Id")
@@ -224,19 +336,24 @@ namespace AgentFinder.Identity.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AltText")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Icon")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LanguageCode")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("MenuText")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("MenuUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<int>("OrderNumber")
                         .HasColumnType("int");
@@ -245,7 +362,8 @@ namespace AgentFinder.Identity.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Target")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -304,16 +422,20 @@ namespace AgentFinder.Identity.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("RefreshToken")
                         .HasColumnType("nvarchar(max)");
@@ -322,7 +444,8 @@ namespace AgentFinder.Identity.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");
@@ -331,17 +454,22 @@ namespace AgentFinder.Identity.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("UserTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<short?>("UserTypeId1")
+                    b.Property<short?>("UserTypeId")
                         .HasColumnType("smallint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserTypeId1");
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.HasIndex("UserTypeId");
 
                     b.ToTable("Users", (string)null);
                 });
@@ -355,11 +483,42 @@ namespace AgentFinder.Identity.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<short>("UserTypeId"), 1L, 1);
 
                     b.Property<string>("TypeName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("UserTypeId");
 
                     b.ToTable("UserTypes");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.Agent", b =>
+                {
+                    b.HasOne("AgentFinder.Identity.Models.Location", "location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
+
+                    b.HasOne("AgentFinder.Identity.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+
+                    b.Navigation("location");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.AgentCustomer", b =>
+                {
+                    b.HasOne("AgentFinder.Identity.Models.Agent", "Agent")
+                        .WithMany()
+                        .HasForeignKey("AgentId");
+
+                    b.HasOne("AgentFinder.Identity.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Agent");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("AgentFinder.Identity.Models.City", b =>
@@ -393,6 +552,21 @@ namespace AgentFinder.Identity.Migrations
                     b.Navigation("customerGroup");
 
                     b.Navigation("user");
+                });
+
+            modelBuilder.Entity("AgentFinder.Identity.Models.CustomerNotification", b =>
+                {
+                    b.HasOne("AgentFinder.Identity.Models.Agent", "Agent")
+                        .WithMany()
+                        .HasForeignKey("AgentId");
+
+                    b.HasOne("AgentFinder.Identity.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Agent");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("AgentFinder.Identity.Models.Location", b =>
@@ -433,7 +607,7 @@ namespace AgentFinder.Identity.Migrations
                 {
                     b.HasOne("AgentFinder.Identity.Models.UserType", "userType")
                         .WithMany()
-                        .HasForeignKey("UserTypeId1");
+                        .HasForeignKey("UserTypeId");
 
                     b.Navigation("userType");
                 });

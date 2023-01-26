@@ -9,9 +9,15 @@ public class Country : AuditableEntity
 {
     [Key]
     public int Id { get; set;}
-
+    /// <summary>
+    /// 
+    /// </summary>
+    [MaxLength(25)]
     public string Name { get; set;}
-
+    /// <summary>
+    /// 
+    /// </summary>
+    [MaxLength(5)]
     public string ShortCode { get; set; }
 
 }

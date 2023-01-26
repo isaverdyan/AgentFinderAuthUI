@@ -12,5 +12,11 @@ namespace AgentFinder.Identity.Models
         [ForeignKey("UserId")]
         public User user { get; set; }
 
+        public DateTime? LastContactDate { get; set; }
+
+        public string? ShortDescription { get; set; }
+
+        public string? LongDescription { get; set; }
+
     }
 }
