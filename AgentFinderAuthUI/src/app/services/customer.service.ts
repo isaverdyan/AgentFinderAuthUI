@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observer, Subject } from 'rxjs';
 
 @Injectable({
@@ -15,6 +15,13 @@ export class CustomerService {
 
   Remove(id: number): any {
     return this.http.delete<any>(`${this.baseUrl}delete`);
+  }
+  getCustomersByAgent(id: string) {
+    const header = new HttpHeaders()
+    .set('content-type','application-json')
+    .set('Access-Control-Allow-Origin','*');
+
+    return this.http.get<any>(`${this.baseUrl}list/${id}`, {'headers': header});
   }
 
   private _refreshrequired=new Subject<void>();

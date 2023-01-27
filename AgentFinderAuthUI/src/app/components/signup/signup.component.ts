@@ -41,15 +41,16 @@ export class SignupComponent implements OnInit {
    
     if(this.signUpForm.valid) {
       sessionStorage.setItem("userRole", "customer");
+      this.signUpForm.value.role =  "customer";
       this.auth.signUp(this.signUpForm.value).subscribe({
-        next: (res=>{
+        next: (res => {
           //alert(res.message);
           this.signUpForm.reset();
          
           this.router.navigate(['login']);
         }),
-        error:(err=>{
-          this.toast.error({detail:"ERROR",summary:"Something went wrong!", duration: 5000});
+        error:(err => {
+          this.toast.error({detail:"ERROR", summary:"Something went wrong!", duration: 5000});
         })
       });
     }
