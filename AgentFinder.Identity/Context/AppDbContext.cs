@@ -8,7 +8,7 @@ namespace AgentFinder.Identity.Context
     {
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
         {
-
+            ChangeTracker.LazyLoadingEnabled = false;
         }
         public DbSet<Agent> Agents { get; set; }
         public DbSet<User> Users { get; set; }

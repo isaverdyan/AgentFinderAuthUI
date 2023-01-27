@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace AgentFinder.Identity.Models.Provider
 {
