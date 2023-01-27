@@ -43,17 +43,15 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid){     
      
       this.auth.signIn(this.loginForm.value).subscribe({
-        next: (res)=>{
-          
+        next: (res)=>{          
           this.loginForm.reset();
-          this.auth.storeToken(res.accessToken);
-          
+          this.auth.storeToken(res.accessToken);          
           this.auth.storeRefreshToken(res.refreshToken);
-          console.log(">>>>>>>>>> "+ JSON.stringify(res));
+
           const tokenPayload = this.auth.decodedToken();
           this.userStore.setFullNameForStore(tokenPayload.name);
           this.userStore.setRoleForStore(tokenPayload.role);
-          this.toast.success({detail:"SUCCESS",summary:res.message,duration: 5000});
+          this.toast.success({detail:"SUCCESS", summary:res.message, duration: 5000});
           if(tokenPayload.role === 'agent'){
             this.router.navigate(['dashboard']);
           }

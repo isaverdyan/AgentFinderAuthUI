@@ -4,4 +4,7 @@ export class CustomerApiModel {
     lastname!: string;
     username!: string;
     email!: string;
+    lastContactDate!: string;
+    longDescription!: string;
+    shortDescription!: string;
 }

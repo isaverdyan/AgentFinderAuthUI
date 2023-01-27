@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDividerModule } from '@angular/material/divider';
@@ -15,6 +16,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { NgToastModule } from 'ng-angular-popup';
 
 import { AuthService } from './services/auth.service';
@@ -39,6 +42,8 @@ import { ContactInboxComponent } from './components/contact-inbox/contact-inbox.
 import { OfferBoxComponent } from './components/offer-box/offer-box.component';
 import { TopMenuComponent } from './shared/layouts/top-menu/top-menu.component';
 import { CustomersComponent } from './components/customers/customers.component';
+import { MessageComponent } from './components/message/message.component';
+import { MessageSenderService } from './services/message-sender.service';
 
 
 @NgModule({
@@ -60,6 +65,7 @@ import { CustomersComponent } from './components/customers/customers.component';
     OfferBoxComponent,
     TopMenuComponent,
     CustomersComponent,
+    MessageComponent,
  
   ],
   imports: [
@@ -71,6 +77,7 @@ import { CustomersComponent } from './components/customers/customers.component';
     FormsModule,
     HttpClientModule,
     NgToastModule,
+    BrowserAnimationsModule,
     MatGridListModule,
     MatDividerModule,
     MatTableModule,
@@ -79,7 +86,8 @@ import { CustomersComponent } from './components/customers/customers.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -87,7 +95,8 @@ import { CustomersComponent } from './components/customers/customers.component';
     multi: true
   },
   MenuOptionsService,
-  CustomerService
+  CustomerService,
+  MessageSenderService
 ],
   bootstrap: [AppComponent]
 })

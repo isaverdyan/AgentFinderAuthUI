@@ -1,0 +1,14 @@
+<form [formGroup]="messageForm" style="display: flex; flex-direction: column; height: 50%;">
+    
+        <p><mat-label>Enter message text to send</mat-label></p>
+        <div class="form-group">
+            <textarea class="form-control" [(ngModel)]="messageText" formControlName="messageText" rows="5" cols="30" matInput ></textarea>
+            <small *ngIf="messageForm.controls['messageText'].dirty && messageForm.hasError('required','messageText')" class="text-danger">*Message text is required</small>
+        </div>
+         
+        <button class="btn btn-primary btn-block mt-4 w-100" mat-button (click)="sendMessage()">Send</button>  
+        <button class="btn btn-secondary btn-block mt-4 w-100" mat-button mat-dialog-close (click)="closeMe()">Close</button>
+    
+  </form>
+
+
